@@ -1,0 +1,5 @@
+!/.gitattributes
+/.gradle
+/.gradle-home
+/.idea
+build
