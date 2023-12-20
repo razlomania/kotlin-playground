@@ -24,20 +24,20 @@ class Computer(val processor: CPU = CPU(), val ram: Memory = Memory(), val hd: H
         val SECTOR_SIZE = 0
     }
 
-    fun start() {
-        processor.freeze()
-        ram.load(BOOT_ADDRESS, hd.read(BOOT_SECTOR, SECTOR_SIZE))
-        processor.jump(BOOT_ADDRESS)
-        processor.execute()
-    }
+//    fun start() {
+//        processor.freeze()
+//        ram.load(BOOT_ADDRESS, hd.read(BOOT_SECTOR, SECTOR_SIZE))
+//        processor.jump(BOOT_ADDRESS)
+//        processor.execute()
+//    }
 }
 
-//fun Computer.start() {
-//    processor.freeze()
-//    ram.load(Computer.BOOT_ADDRESS, hd.read(Computer.BOOT_SECTOR, Computer.SECTOR_SIZE))
-//    processor.jump(Computer.BOOT_ADDRESS)
-//    processor.execute()
-//}
+fun Computer.start() {
+    processor.freeze()
+    ram.load(Computer.BOOT_ADDRESS, hd.read(Computer.BOOT_SECTOR, Computer.SECTOR_SIZE))
+    processor.jump(Computer.BOOT_ADDRESS)
+    processor.execute()
+}
 
 
 fun main() {

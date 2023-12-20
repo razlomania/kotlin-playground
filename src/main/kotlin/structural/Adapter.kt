@@ -42,7 +42,7 @@ fun charger(plug: EUPlug) : UsbMini {
 }
 
 fun charge() {
-    // cellPhone(charger(usPowerOutlet()))
+    //cellPhone(charger(usPowerOutlet()))
 }
 
 fun USPlug.toEUPlug(): EUPlug {

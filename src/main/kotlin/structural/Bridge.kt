@@ -3,7 +3,7 @@ package structural
 fun main() {
     val stormTrooper = StormTrooper(Rifle(), RegularLegs())
     val flameTrooper = StormTrooper(Flamethrower(), RegularLegs())
-    val scoutTrooper = StormTrooper(Rifle(), AthleticLegs())
+    val scoutTrooper = StormTrooper(DesertEagle(), AthleticLegs())
 
     println(listOf(stormTrooper, flameTrooper, scoutTrooper))
 }
@@ -91,7 +91,7 @@ class Flamethrower : Weapon {
 }
 
 
-class Batton : Weapon {
+class DesertEagle : Weapon {
     override fun attack(x: Long, y: Long) = RIFLE_DAMAGE * 3
 }
 

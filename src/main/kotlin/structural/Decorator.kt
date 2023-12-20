@@ -1,67 +1,68 @@
 package structural
 
 fun main() {
-    fun christmasTreeWithBubbleLights() {
-
-        val christmasTree = BubbleLights(PineChristmasTree())
-        val decoratedChristmasTree = christmasTree.decorate()
-        println(decoratedChristmasTree)
+    fun sendWhatsupAndEmailNotification() {
+        val emailAndSlack = EmailNotification(SlackNotification())
+        val result = emailAndSlack.send()
+        println(result)
     }
 
-    fun christmasTreeWithGarlands() {
-
-        val christmasTree = Garlands(PineChristmasTree())
-        val decoratedChristmasTree = christmasTree.decorate()
-        println(decoratedChristmasTree)
+    fun personioAndSlackNotification() {
+        val personioAndSlack = PersonioNotification(SlackNotification())
+        val result = personioAndSlack.send()
+        println(result)
     }
+
+    sendWhatsupAndEmailNotification()
+    personioAndSlackNotification()
 }
 
-interface ChristmasTree {
+interface Notification {
 
-    fun decorate(): String
+    fun send(): String
 }
 
-class PineChristmasTree : ChristmasTree {
+class SlackNotification : Notification {
 
-    override fun decorate() = "Pine christmas tree"
+    override fun send() = "send slack notification"
 }
 
 /*
 * When using composition to implement the Decorator pattern, we’ll need an abstract
 * class that will act as the composer or decorator for our target object
 */
-abstract class TreeDecorator
-    (private val tree: ChristmasTree) : ChristmasTree {
+abstract class NotificationDecorator
+    (private val not: Notification) : Notification {
 
-    override fun decorate(): String {
-        return tree.decorate()
+    override fun send(): String {
+        return not.send()
     }
 }
 
 /*
-* We’ll now create the decorating element. This decorator will extend our abstract TreeDecorator
-* class and will modify its decorate() method according to our requirement:
+* We’ll now create the decorating element. This decorator will extend our abstract NotificationDecorator
+* class and will modify its send() method according to our requirement:
 */
 
-class BubbleLights(tree: ChristmasTree) : TreeDecorator(tree) {
+class WhatsupNotification(notification:  Notification) : NotificationDecorator(notification) {
 
-    override fun decorate(): String {
-        return super.decorate() + decorateWithBubbleLights()
+    override fun send(): String {
+        return super.send() + sendSlackNotification()
     }
 
-    private fun decorateWithBubbleLights(): String {
-        return " with Bubble Lights"
+    private fun sendSlackNotification(): String {
+        return " and whatsup"
     }
 }
 
-class Tinsel(tree: ChristmasTree) : TreeDecorator(tree) {
+class EmailNotification(notification:  Notification) : NotificationDecorator(notification) {
 
-    override fun decorate(): String {
-        return super.decorate() + decorateWithTinsel()
+    override fun send(): String {
+        return super.send() + sendEmailNotification()
     }
 
-    private fun decorateWithTinsel(): String {
-        return " with Tinsel"
+    private fun sendEmailNotification(): String {
+        return " and email"
     }
 }
 
@@ -72,13 +73,13 @@ class Tinsel(tree: ChristmasTree) : TreeDecorator(tree) {
 * We’ll now define the class that can implement the ChristmasTree
 * interface by delegating the decorator() method to a specified object
 */
-class Garlands(private val tree: ChristmasTree) : ChristmasTree by tree {
+class PersonioNotification(private val notification: Notification) : Notification by notification {
 
-    override fun decorate(): String {
-        return tree.decorate() + decorateWithGarlands()
+    override fun send(): String {
+        return notification.send() + sendPersonioNotification()
     }
 
-    private fun decorateWithGarlands(): String {
-        return " with Garlands"
+    private fun sendPersonioNotification(): String {
+        return " and personio"
     }
 }

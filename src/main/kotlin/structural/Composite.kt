@@ -1,16 +1,16 @@
 package structural
 
 fun main() {
-    val bobaFett = StormTrooper(Rifle(), RegularLegs())
+    val trooper = StormTrooper(Rifle(), RegularLegs())
 
-    val squad = Squad(listOf(bobaFett.copy(), bobaFett.copy(), bobaFett.copy()))
+    val squad = Squad(listOf(trooper.copy(), trooper.copy(), trooper.copy()))
 
     squad.attackRebel(1, 2)
 
     val secondSquad = Squad(
-        bobaFett.copy(),
-        bobaFett.copy(),
-        bobaFett.copy()
+        trooper.copy(),
+        trooper.copy(),
+        trooper.copy()
     )
 }
 

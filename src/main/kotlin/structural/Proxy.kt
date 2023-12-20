@@ -9,7 +9,6 @@ fun main() {
     )
 
     println(cat.image.size)
-    println(cat.image.size)
 }
 
 data class CatImage(
